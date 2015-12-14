@@ -920,7 +920,7 @@ void test_game_smoketest(ErrorContext &ec) {
             Game g(Game::MIN_WIDTH-1, 5);
             pass = false;
         } catch (InsufficientDimensionsEx &ex) {
-            std::cerr << "Exception generated: " << ex << std::endl;
+//            std::cerr << "Exception generated: " << ex << std::endl;//commented out
             pass = (ex.getName() == "InsufficientDimensionsEx");
         }
     }
@@ -1047,80 +1047,80 @@ void test_game_smoketest(ErrorContext &ec) {
 //    }
 //}
 //
-//// Printing of a game
-//void test_game_print(ErrorContext &ec, unsigned int numRuns) {
-//    bool pass;
-//
-//    // Run at least once!!
-//    assert(numRuns > 0);
-//
-//    ec.DESC("--- Test - Game - Print ---");
-//
-//    for (int run = 0; run < numRuns; run++) {
-//
-//        ec.DESC("3x3 grid, automatic population");
-//
-//        {
-//            Game g(3, 3, false);
-//
-//            std::stringstream ss;
-//            ss << g;
-//            std::string line;
-//            getline(ss, line);
-//            std::regex re("Round [[:d:]]{1,3}");
-//            std::smatch m;
-//            std::regex_search(line, m, re);
-//            pass = (m.size() == 1);
-////            if (! pass) std::cout << m[0] << ' ' << m[1] << ' ' << m.size() << std::endl;
-//            for (int i = 0; i < 3; i++) {
-//                getline(ss, line);
-//                std::regex re1("(\\[([[:alpha:]]{1}[[:d:]]{1,4}[ ]?|[ ]{5})\\]){3}");
-//                std::regex_search(line, m, re1);
-//                pass = pass && (m.size() == 3);
-////                if (! pass) {
-////                    std::cout << m[0] << ' ' << m[1] << ' ' << m.size() << std::endl;
-////                }
-//            }
-//            getline(ss, line);
-//            std::regex re2("Status:");
-//            std::regex_search(line, m, re2);
-//            pass = pass && (m.size() == 1);
-//
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("7x6 grid, automatic population");
-//
-//        {
-//            Game g(7, 6, false);
-//
-//            std::stringstream ss;
-//            ss << g;
-//            std::string line;
-//            getline(ss, line);
-//            std::regex re("Round [[:d:]]{1,3}");
-//            std::smatch m;
-//            std::regex_search(line, m, re);
-//            pass = (m.size() == 1);
-////            if (! pass) std::cout << m[0] << ' ' << m[1] << ' ' << m.size() << std::endl;
-//            for (int i = 0; i < 6; i++) {
-//                getline(ss, line);
-//                std::regex re1("(\\[([[:alpha:]]{1}[[:d:]]{1,4}[ ]?|[ ]{5})\\]){7}");
-//                std::regex_search(line, m, re1);
-//                pass = pass && (m.size() == 3);
-////                if (! pass) {
-////                    std::cout << m[0] << ' ' << m[1] << ' ' << m.size() << std::endl;
-////                }
-//            }
-//            getline(ss, line);
-//            std::regex re2("Status:");
-//            std::regex_search(line, m, re2);
-//            pass = pass && (m.size() == 1);
-//
-//            ec.result(pass);
-//        }
-//    }
-//}
+// Printing of a game
+void test_game_print(ErrorContext &ec, unsigned int numRuns) {
+    bool pass;
+
+    // Run at least once!!
+    assert(numRuns > 0);
+
+    ec.DESC("--- Test - Game - Print ---");
+
+    for (int run = 0; run < numRuns; run++) {
+
+        ec.DESC("3x3 grid, automatic population");
+
+        {
+            Game g(3, 3, false);
+
+            std::stringstream ss;
+            ss << g;
+            std::string line;
+            getline(ss, line);
+            std::regex re("Round [[:d:]]{1,3}");
+            std::smatch m;
+            std::regex_search(line, m, re);
+            pass = (m.size() == 1);
+//            if (! pass) std::cout << m[0] << ' ' << m[1] << ' ' << m.size() << std::endl;
+            for (int i = 0; i < 3; i++) {
+                getline(ss, line);
+                std::regex re1("(\\[([[:alpha:]]{1}[[:d:]]{1,4}[ ]?|[ ]{5})\\]){3}");
+                std::regex_search(line, m, re1);
+                pass = pass && (m.size() == 3);
+//                if (! pass) {
+//                    std::cout << m[0] << ' ' << m[1] << ' ' << m.size() << std::endl;
+//                }
+            }
+            getline(ss, line);
+            std::regex re2("Status:");
+            std::regex_search(line, m, re2);
+            pass = pass && (m.size() == 1);
+
+            ec.result(pass);
+        }
+
+        ec.DESC("7x6 grid, automatic population");
+
+        {
+            Game g(7, 6, false);
+
+            std::stringstream ss;
+            ss << g;
+            std::string line;
+            getline(ss, line);
+            std::regex re("Round [[:d:]]{1,3}");
+            std::smatch m;
+            std::regex_search(line, m, re);
+            pass = (m.size() == 1);
+//            if (! pass) std::cout << m[0] << ' ' << m[1] << ' ' << m.size() << std::endl;
+            for (int i = 0; i < 6; i++) {
+                getline(ss, line);
+                std::regex re1("(\\[([[:alpha:]]{1}[[:d:]]{1,4}[ ]?|[ ]{5})\\]){7}");
+                std::regex_search(line, m, re1);
+                pass = pass && (m.size() == 3);
+//                if (! pass) {
+//                    std::cout << m[0] << ' ' << m[1] << ' ' << m.size() << std::endl;
+//                }
+            }
+            getline(ss, line);
+            std::regex re2("Status:");
+            std::regex_search(line, m, re2);
+            pass = pass && (m.size() == 1);
+
+            ec.result(pass);
+        }
+    }
+}
 //
 //// Playing and termination of a game
 //void test_game_play(ErrorContext &ec, unsigned int numRuns) {

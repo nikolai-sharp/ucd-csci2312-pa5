@@ -6,6 +6,8 @@
 #include "ErrorContext.h"
 #include "GamingTests.h"
 
+#include "Game.h"
+
 using std::cout;
 using std::endl;
 
@@ -13,7 +15,7 @@ using namespace Testing;
 
 int main() {
 
-    const int NumIters = 3;
+    const int NumIters = 1;
 
     cout << endl << "Testing PA5!!" << endl << endl;
 
@@ -43,10 +45,13 @@ int main() {
 //    test_action_smoketest(ec);
 //
 //    // game tests
-//    test_game_smoketest(ec);
+    test_game_smoketest(ec);
 //    test_game_populate(ec, NumIters);
-//    test_game_print(ec, NumIters);
+    test_game_print(ec, NumIters);
 //    test_game_play(ec, NumIters);
+    
+//    Gaming::Game g;
+//    std::cout << g;
 
     return 0;
 }
