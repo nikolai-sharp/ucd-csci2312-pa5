@@ -11,7 +11,7 @@
 
 namespace Gaming
 {
-    
+    const char Food::FOOD_ID = 'F';
     
     
     

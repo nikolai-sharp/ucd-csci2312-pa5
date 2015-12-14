@@ -11,7 +11,7 @@
 
 namespace Gaming
 {
-    
+    const char Simple::SIMPLE_ID = 'S';
     
     
     

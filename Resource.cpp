@@ -11,7 +11,7 @@
 
 namespace Gaming
 {
-    
+    const double Resource::RESOURCE_SPOIL_FACTOR = 1.2;
     
     
     

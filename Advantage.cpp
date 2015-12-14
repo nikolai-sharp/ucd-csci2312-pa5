@@ -11,7 +11,8 @@
 
 namespace Gaming
 {
-    
+    const char Advantage::ADVANTAGE_ID = 'D';
+    const double Advantage::ADVANTAGE_MULT_FACTOR = 2.0;
     
     
     

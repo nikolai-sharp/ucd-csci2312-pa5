@@ -10,7 +10,7 @@
 
 namespace Gaming
 {
-    
+    const double Agent::AGENT_FATIGUE_RATE = 0.3;
     
     
     

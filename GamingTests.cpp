@@ -33,7 +33,7 @@ using namespace Testing;
 
 // - - - - - - - - - - P I E C E - - - - - - - - - -
 
-// Smoketest: constructor, copy constructor, destructor, resources
+//// Smoketest: constructor, copy constructor, destructor, resources
 //void test_piece_smoketest(ErrorContext &ec) {
 //    bool pass;
 //
@@ -886,46 +886,46 @@ using namespace Testing;
 //// - - - - - - - - - - G A M E - - - - - - - - - -
 //
 //// Smoketest: constructor, copy constructor, destructor, number of pieces
-//void test_game_smoketest(ErrorContext &ec) {
-//    bool pass;
-//
-//    ec.DESC("--- Test - Game - Smoketest ---");
-//
-//    ec.DESC("constructor, empty game, default grid size, destructor");
-//    pass = true;
-//    for (int i = 0; i < 10; i ++) {
-//        Game g;
-//
-//        pass = (g.getWidth() == 3 &&
-//                g.getHeight() == 3 &&
-//                g.getNumPieces() == 0);
-//    }
-//    ec.result(pass);
-//
-//    ec.DESC("constructor with dimensions");
-//    pass = true;
-//    for (int i = 0; i < 10; i ++) {
-//        Game g(4, 5);
-//
-//        pass = (g.getWidth() == 4 &&
-//                g.getHeight() == 5 &&
-//                g.getNumPieces() == 0);
-//    }
-//    ec.result(pass);
-//
-//    ec.DESC("insufficient dimensions (exception generated)");
-//    pass = true;
-//    for (int i = 0; i < 10; i ++) {
-//        try {
-//            Game g(Game::MIN_WIDTH-1, 5);
-//            pass = false;
-//        } catch (InsufficientDimensionsEx &ex) {
-//            std::cerr << "Exception generated: " << ex << std::endl;
-//            pass = (ex.getName() == "InsufficientDimensionsEx");
-//        }
-//    }
-//    ec.result(pass);
-//}
+void test_game_smoketest(ErrorContext &ec) {
+    bool pass;
+
+    ec.DESC("--- Test - Game - Smoketest ---");
+
+    ec.DESC("constructor, empty game, default grid size, destructor");
+    pass = true;
+    for (int i = 0; i < 10; i ++) {
+        Game g;
+
+        pass = (g.getWidth() == 3 &&
+                g.getHeight() == 3 &&
+                g.getNumPieces() == 0);
+    }
+    ec.result(pass);
+
+    ec.DESC("constructor with dimensions");
+    pass = true;
+    for (int i = 0; i < 10; i ++) {
+        Game g(4, 5);
+
+        pass = (g.getWidth() == 4 &&
+                g.getHeight() == 5 &&
+                g.getNumPieces() == 0);
+    }
+    ec.result(pass);
+
+    ec.DESC("insufficient dimensions (exception generated)");
+    pass = true;
+    for (int i = 0; i < 10; i ++) {
+        try {
+            Game g(Game::MIN_WIDTH-1, 5);
+            pass = false;
+        } catch (InsufficientDimensionsEx &ex) {
+            std::cerr << "Exception generated: " << ex << std::endl;
+            pass = (ex.getName() == "InsufficientDimensionsEx");
+        }
+    }
+    ec.result(pass);
+}
 //
 //// populate the game grid
 //void test_game_populate(ErrorContext &ec, unsigned int numRuns) {

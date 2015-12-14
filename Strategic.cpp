@@ -11,7 +11,7 @@
 
 namespace Gaming
 {
-    
+    const char Strategic::STRATEGIC_ID = 'T';
     
     
     
