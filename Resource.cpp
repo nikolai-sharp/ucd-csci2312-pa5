@@ -13,8 +13,45 @@ namespace Gaming
 {
     const double Resource::RESOURCE_SPOIL_FACTOR = 1.2;
     
+    Resource::Resource(const Game &g, const Position &p, double __capacity): Piece(g,p), __capacity(__capacity)
+    {
+        
+    }
     
+    Resource::~Resource()
+    {
+        
+    }
     
+    double Resource::consume()
+    {
+        
+        return 0;// fill in
+    }
+    
+    ActionType Resource::takeTurn(const Surroundings &s) const
+    {
+        ActionType action;
+        return action;
+    }
+    
+    Piece &Resource::operator*(Piece &other)
+    {
+        
+        return other;
+    }
+    
+    Piece &Resource::interact(Agent *other)
+    {
+        
+        return *this;//change later
+    }
+    
+    Piece &Resource::interact(Resource *)
+    {
+        
+        return *this;//change later
+    }
     
     
     

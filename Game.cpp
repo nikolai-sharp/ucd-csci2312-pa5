@@ -23,11 +23,17 @@ namespace Gaming
         __round = 0;
     }
     
-    Game::Game(unsigned width, unsigned height, bool manual): __width(width), __height(height), __grid(__width*__height, nullptr)
+    Game::Game(unsigned width, unsigned height, bool manual): __grid(width*height, nullptr), __width(width), __height(height)
     {
         if (width < MIN_WIDTH || height < MIN_HEIGHT)
             throw InsufficientDimensionsEx(MIN_WIDTH, MIN_HEIGHT, width, height);
         __round = 0;
+    }
+    
+    Game::Game(const Game &another): __grid(another.__grid), __height(another.__height), __width(another.__width), __round(another.__round), __status(another.__status)
+    {
+        __verbose = another.__verbose;
+        
     }
     
     Game::~Game()

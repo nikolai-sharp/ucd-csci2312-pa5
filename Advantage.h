@@ -23,7 +23,7 @@ namespace Gaming {
 
         void print(std::ostream &os) const override;
 
-        double getCapacity() const override;
+        double getCapacity() const override { return __capacity; };
         double consume() override;
     };
 }

@@ -34,30 +34,30 @@ using namespace Testing;
 // - - - - - - - - - - P I E C E - - - - - - - - - -
 
 //// Smoketest: constructor, copy constructor, destructor, resources
-//void test_piece_smoketest(ErrorContext &ec) {
-//    bool pass;
-//
-//    ec.DESC("--- Test - Unit - Smoketest ---");
-//
-//    ec.DESC("constructor, destructor for leaf classes from Piece hierarchy");
-//    pass = true;
-//    for (int i = 0; i < 10; i++) {
-//        Game g;                         // note: Game smoke test is needed first
-//
-//        Position p0(0, 0);
-//        Simple s(g, p0, 10);
-//
-//        Position p1(1, 0);
-//        Strategic t(g, p1, 20);
-//
-//        Position p2(2, 2);
-//        Food f(g, p2, 5);
-//
-//        Position p3(0, 2);
-//        Advantage a(g, p3, 3);
-//    }
-//    ec.result(pass);
-//}
+void test_piece_smoketest(ErrorContext &ec) {
+    bool pass;
+
+    ec.DESC("--- Test - Unit - Smoketest ---");
+
+    ec.DESC("constructor, destructor for leaf classes from Piece hierarchy");
+    pass = true;
+    for (int i = 0; i < 10; i++) {
+        Game g;                         // note: Game smoke test is needed first
+    
+        Position p0(0, 0);
+        Simple s(g, p0, 10);
+
+        Position p1(1, 0);
+        Strategic t(g, p1, 20);
+
+        Position p2(2, 2);
+        Food f(g, p2, 5);
+
+        Position p3(0, 2);
+        Advantage a(g, p3, 3);
+    }
+    ec.result(pass);
+}
 
 //void test_piece_print(ErrorContext &ec, unsigned int numRuns) {
 //    bool pass;

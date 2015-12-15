@@ -12,9 +12,22 @@
 namespace Gaming
 {
     
+    DefaultAgentStrategy::DefaultAgentStrategy()
+    {
+        
+    }
     
+    DefaultAgentStrategy::~DefaultAgentStrategy()
+    {
+        
+    }
     
-    
+    ActionType DefaultAgentStrategy::operator()(const Surroundings &s) const
+    {
+        ActionType action;
+        
+        return action;
+    }
     
     
     

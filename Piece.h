@@ -48,7 +48,7 @@ namespace Gaming {
 
         virtual ActionType takeTurn(const Surroundings &surr) const = 0; // note: doesn't actually change the object
 
-        virtual Piece &operator*(Piece &other) = 0;
+        virtual Piece &operator*(Piece &) = 0;
         virtual Piece &interact(Agent *) = 0;
         virtual Piece &interact(Resource *) = 0;
 

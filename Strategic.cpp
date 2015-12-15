@@ -13,9 +13,26 @@ namespace Gaming
 {
     const char Strategic::STRATEGIC_ID = 'T';
     
+    Strategic::Strategic(const Game &g, const Position &p, double energy, Strategy *s): Agent::Agent(g, p, energy), __strategy(s)
+    {
+        
+    }
     
+    Strategic::~Strategic()
+    {
+        delete __strategy;
+    }
     
+    void Strategic::print(std::ostream &os) const
+    {
+        //fill in
+    }
     
-    
-    
+    ActionType Strategic::takeTurn(const Surroundings &s) const
+    {
+        ActionType action;
+        
+        return action;
+        
+    }
 }
