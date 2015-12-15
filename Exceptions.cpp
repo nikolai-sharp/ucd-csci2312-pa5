@@ -27,7 +27,7 @@ namespace Gaming
     }
     
     InsufficientDimensionsEx::InsufficientDimensionsEx(unsigned minWidth, unsigned minHeight, unsigned width, unsigned height):
-    DimensionEx::DimensionEx(minWidth, minHeight, width, height)
+        DimensionEx::DimensionEx(minWidth, minHeight, width, height)
     {
         __name = "InsufficientDimensionsEx";
     }
@@ -37,6 +37,16 @@ namespace Gaming
         
     }
     
+    OutOfBoundsEx::OutOfBoundsEx(unsigned minWidth, unsigned minHeight, unsigned width, unsigned height):
+        DimensionEx::DimensionEx(minWidth, minHeight, width, height)
+    {
+        __name = "OutOfBoundsEx";
+    }
+    
+    void OutOfBoundsEx::__print_args(std::ostream &os) const
+    {
+        
+    }
     
     
 }

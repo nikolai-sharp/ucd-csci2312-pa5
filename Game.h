@@ -26,6 +26,8 @@ namespace Gaming {
     private:
         static const unsigned int NUM_INIT_AGENT_FACTOR;
         static const unsigned int NUM_INIT_RESOURCE_FACTOR;
+        static const unsigned int actionToPosition[9];
+//        static const std::vector<std::pair<int,int>>;
 
         static PositionRandomizer __posRandomizer;
 
@@ -60,7 +62,7 @@ namespace Gaming {
         unsigned int getNumAgents() const;
         unsigned int getNumSimple() const;
         unsigned int getNumStrategic() const;
-        unsigned int getNumResources();
+        unsigned int getNumResources() const;
         Status getStatus() const { return __status; }
         unsigned int getRound() const { return __round; }
 
@@ -80,6 +82,12 @@ namespace Gaming {
         static const Position randomPosition(const std::vector<int> &positions) { // note: from Surroundings as an array
             return __posRandomizer(positions);
         }
+        
+        // helper methods
+        const unsigned int positionToGrid(const Position &p) const;
+        const unsigned int positionToGrid(const unsigned int x, const unsigned int y) const;
+//        const Position gridToPosition(const std::vector<Piece *>::iterator it) const; //not sure if I want this yet
+        const Position gridToPosition(const unsigned int grid) const;
 
         bool isLegal(const ActionType &ac, const Position &pos) const;
         const Position move(const Position &pos, const ActionType &ac) const; // note: assumes legal, use with isLegal()

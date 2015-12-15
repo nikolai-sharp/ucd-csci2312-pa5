@@ -45,6 +45,8 @@ namespace Gaming {
         virtual void age() = 0;
         virtual bool isViable() const = 0;
         virtual PieceType getType() const = 0;
+        virtual char getTypeId() const = 0;
+        unsigned int getId() const { return __id; };
 
         virtual ActionType takeTurn(const Surroundings &surr) const = 0; // note: doesn't actually change the object
 

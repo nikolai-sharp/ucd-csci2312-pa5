@@ -11,13 +11,13 @@
 
 namespace Gaming
 {
-//    unsigned int Piece::__idGen = 1000;
+    unsigned int Piece::__idGen = 1000;
     
     Piece::Piece(const Game &g, const Position &p): __game(g), __position(p)
     {
-//        __finished = 0;
-//        __turned = 0;
-//        __id = __idGen++;
+        __finished = 0;
+        __turned = 0;
+        __id = __idGen++;
     }
     
     Piece::~Piece()
@@ -27,7 +27,14 @@ namespace Gaming
     
     std::ostream &operator<<(std::ostream &os, const Piece &piece)
     {
-        os << piece.getType() << piece.__id;
+//        char type = piece.getType();
+//        switch (char)
+//        {
+//            case '0': type = 'S'; break;
+//                case '1': type = 'T'
+//        }
+        
+        os << piece.getTypeId() << piece.__id;
         return os;
     }
     

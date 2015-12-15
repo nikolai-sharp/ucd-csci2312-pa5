@@ -20,6 +20,7 @@ namespace Gaming {
         ~Advantage();
 
         PieceType getType() const override { return PieceType::ADVANTAGE; }
+        char getTypeId() const override { return ADVANTAGE_ID; }
 
         void print(std::ostream &os) const override;
 

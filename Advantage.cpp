@@ -26,7 +26,7 @@ namespace Gaming
     
     void Advantage::print(std::ostream &os) const
     {
-        
+        os << ADVANTAGE_ID << __id;
     }
     
     double Advantage::consume()

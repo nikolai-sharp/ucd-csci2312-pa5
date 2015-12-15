@@ -25,7 +25,7 @@ namespace Gaming
     
     void Simple::print(std::ostream &os) const
     {
-        os << getType() << __id;
+        os << SIMPLE_ID << __id;
     }
     
     ActionType Simple::takeTurn(const Surroundings &s) const

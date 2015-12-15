@@ -18,7 +18,8 @@ namespace Gaming {
         Simple(const Game &g, const Position &p, double energy);
         ~Simple();
 
-        PieceType getType() const override { return PieceType::SIMPLE; };
+        PieceType getType() const override { return PieceType::SIMPLE; }
+        char getTypeId() const override { return SIMPLE_ID; }
 
         void print(std::ostream &os) const override;
 

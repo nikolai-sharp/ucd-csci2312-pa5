@@ -23,6 +23,7 @@ namespace Gaming {
         ~Strategic();
 
         PieceType getType() const override { return PieceType::STRATEGIC; }
+        char getTypeId() const override { return STRATEGIC_ID; }
 
         void print(std::ostream &os) const override;
 

@@ -25,7 +25,7 @@ namespace Gaming
     
     void Food::print(std::ostream &os) const
     {
-        
+        os << FOOD_ID << __id;
         
     }
     

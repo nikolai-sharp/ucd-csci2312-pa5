@@ -25,7 +25,7 @@ namespace Gaming
     
     void Strategic::print(std::ostream &os) const
     {
-        //fill in
+        os << STRATEGIC_ID << __id;
     }
     
     ActionType Strategic::takeTurn(const Surroundings &s) const
