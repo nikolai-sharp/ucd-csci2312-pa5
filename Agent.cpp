@@ -7,6 +7,7 @@
 //
 
 #include "Agent.h"
+#include "Resource.h"
 
 namespace Gaming
 {
@@ -25,19 +26,69 @@ namespace Gaming
     
     Piece &Agent::operator*(Piece &other)
     {
-        
-        return other;
+        Piece *ot = &other;
+        PieceType p = other.getType();
+        if (p == ADVANTAGE || p == FOOD)
+        {
+            Resource *res = dynamic_cast<Resource*>(ot);
+            
+            return interact(res);
+        }
+        else if (p == SIMPLE || p == STRATEGIC)
+        {
+            Agent *ag = dynamic_cast<Agent*>(ot);
+            
+            return interact(ag);
+        }
+        return *this;//shouldn't get here..
     }
     
     Piece &Agent::interact(Agent *other)
     {
         
-        return *this;//change later
+        if (other->isViable() && isViable())
+        {
+            if (other->__energy == __energy)
+            {
+                finish();
+                other->finish();
+                return *this; //gotta return something..
+            }
+            else if (other->__energy > __energy)
+            {
+                other->__energy -= __energy;
+                finish();
+                return *other;
+            }
+            else //if (other->__energy < __energy)
+            {
+                __energy -= other->__energy;
+                other->finish();
+                return *this;
+            }
+            
+            
+        }
+        else if (other->isViable() && !isViable())
+        {
+            return *other;
+        }
+        else //if (!other->isViable() && isViable()) //commented out because this should be the last case anyway
+        {
+            return *this;
+        }
+        
+
     }
     
-    Piece &Agent::interact(Resource *)
+    Piece &Agent::interact(Resource *other)
     {
-        
-        return *this;//change later
+        __energy += other->consume();
+        return *this;
     }
 }
+
+
+
+
+

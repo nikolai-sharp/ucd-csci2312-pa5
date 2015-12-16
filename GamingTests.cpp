@@ -561,82 +561,82 @@ void test_piece_turntaking(ErrorContext &ec, unsigned int numRuns) {
 }
 //
 //// Piece interaction operator*
-//void test_piece_interaction(ErrorContext &ec, unsigned int numRuns) {
-//    bool pass;
-//
-//    // Run at least once!!
-//    assert(numRuns > 0);
-//
-//    ec.DESC("--- Test - Piece - Interaction ---");
-//
-//    for (int run = 0; run < numRuns; run++) {
-//
-//        ec.DESC("3x3, manual, two agents with equal energy");
-//
-//        {
-//            Game g;
-//
-//            Simple s0(g, Position(2, 0), Game::STARTING_AGENT_ENERGY);
-//            Strategic s1(g, Position(1, 1), Game::STARTING_AGENT_ENERGY);
-//
-//            Piece *pieces[2] = { &s0, &s1 };
-//            Piece &p0 = *pieces[0], &p1 = *pieces[1];
-//            p1 * p0;
-//            pass = (! p0.isViable()) && (! p1.isViable());
-//
-//            ec.result(pass);
-//        }
-//
-//
-//        ec.DESC("3x3, manual, two agents with inequal energy");
-//
-//        {
-//            Game g;
-//
-//            Simple s0(g, Position(2, 0), Game::STARTING_AGENT_ENERGY);
-//            Strategic s1(g, Position(1, 1), Game::STARTING_AGENT_ENERGY * 1.1);
-//
-//            Piece *pieces[2] = { &s0, &s1 };
-//            Piece &p0 = *pieces[0], &p1 = *pieces[1];
-//            p1 * p0;
-//            pass = (! p0.isViable()) && p1.isViable();
-//
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("3x3, manual, a simple agent and a resource");
-//
-//        {
-//            Game g;
-//
-//            Food s0(g, Position(2, 0), Game::STARTING_RESOURCE_CAPACITY);
-//            Strategic s1(g, Position(1, 1), Game::STARTING_AGENT_ENERGY * 1.1);
-//
-//            Piece *pieces[2] = { &s0, &s1 };
-//            Piece &p0 = *pieces[0], &p1 = *pieces[1];
-//            p1 * p0;
-//            pass = (! p0.isViable()) && p1.isViable();
-//
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("3x3, manual, no interaction between resources");
-//
-//        {
-//            Game g;
-//
-//            Food s0(g, Position(2, 0), Game::STARTING_RESOURCE_CAPACITY);
-//            Food s1(g, Position(1, 1), Game::STARTING_RESOURCE_CAPACITY);
-//
-//            Piece *pieces[2] = { &s0, &s1 };
-//            Piece &p0 = *pieces[0], &p1 = *pieces[1];
-//            p1 * p0;
-//            pass = p0.isViable() && p1.isViable();
-//
-//            ec.result(pass);
-//        }
-//    }
-//}
+void test_piece_interaction(ErrorContext &ec, unsigned int numRuns) {
+    bool pass;
+
+    // Run at least once!!
+    assert(numRuns > 0);
+
+    ec.DESC("--- Test - Piece - Interaction ---");
+
+    for (int run = 0; run < numRuns; run++) {
+
+        ec.DESC("3x3, manual, two agents with equal energy");
+
+        {
+            Game g;
+
+            Simple s0(g, Position(2, 0), Game::STARTING_AGENT_ENERGY);
+            Strategic s1(g, Position(1, 1), Game::STARTING_AGENT_ENERGY);
+
+            Piece *pieces[2] = { &s0, &s1 };
+            Piece &p0 = *pieces[0], &p1 = *pieces[1];
+            p1 * p0;
+            pass = (! p0.isViable()) && (! p1.isViable());
+
+            ec.result(pass);
+        }
+
+
+        ec.DESC("3x3, manual, two agents with inequal energy");
+
+        {
+            Game g;
+
+            Simple s0(g, Position(2, 0), Game::STARTING_AGENT_ENERGY);
+            Strategic s1(g, Position(1, 1), Game::STARTING_AGENT_ENERGY * 1.1);
+
+            Piece *pieces[2] = { &s0, &s1 };
+            Piece &p0 = *pieces[0], &p1 = *pieces[1];
+            p1 * p0;
+            pass = (! p0.isViable()) && p1.isViable();
+
+            ec.result(pass);
+        }
+
+        ec.DESC("3x3, manual, a simple agent and a resource");
+
+        {
+            Game g;
+
+            Food s0(g, Position(2, 0), Game::STARTING_RESOURCE_CAPACITY);
+            Strategic s1(g, Position(1, 1), Game::STARTING_AGENT_ENERGY * 1.1);
+
+            Piece *pieces[2] = { &s0, &s1 };
+            Piece &p0 = *pieces[0], &p1 = *pieces[1];
+            p1 * p0;
+            pass = (! p0.isViable()) && p1.isViable();
+
+            ec.result(pass);
+        }
+
+        ec.DESC("3x3, manual, no interaction between resources");
+
+        {
+            Game g;
+
+            Food s0(g, Position(2, 0), Game::STARTING_RESOURCE_CAPACITY);
+            Food s1(g, Position(1, 1), Game::STARTING_RESOURCE_CAPACITY);
+
+            Piece *pieces[2] = { &s0, &s1 };
+            Piece &p0 = *pieces[0], &p1 = *pieces[1];
+            p1 * p0;
+            pass = p0.isViable() && p1.isViable();
+
+            ec.result(pass);
+        }
+    }
+}
 //
 //
 //// - - - - - - - - - - S U R R O U N D I N G S - - - - - - - - - -
@@ -1128,16 +1128,16 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
 
 }
 // Playing and termination of a game
-//void test_game_play(ErrorContext &ec, unsigned int numRuns) {
-//    bool pass;
-//
-//    // Run at least once!!
-//    assert(numRuns > 0);
-//
-//    ec.DESC("--- Test - Game - Play ---");
-//
-//    for (int run = 0; run < numRuns; run++) {
-//
+void test_game_play(ErrorContext &ec, unsigned int numRuns) {
+    bool pass;
+
+    // Run at least once!!
+    assert(numRuns > 0);
+
+    ec.DESC("--- Test - Game - Play ---");
+
+    for (int run = 0; run < numRuns; run++) {
+
 //        ec.DESC("3x3 grid, manual, game w/o resources terminates immediately");
 //
 //        {
@@ -1164,7 +1164,7 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
 //
 //            ec.result(pass);
 //        }
-
+//
 //        ec.DESC("3x3 grid, manual, 1 simple, 2 resources");
 //
 //        {
@@ -1180,7 +1180,7 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
 //
 //            ec.result(pass);
 //        }
-
+//
 //        ec.DESC("3x3 grid, manual, 1 simple, 3 resources");
 //
 //        {
@@ -1197,7 +1197,7 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
 //
 //            ec.result(pass);
 //        }
-
+//
 //        ec.DESC("3x3 grid, manual, 2 simple, 3 resources");
 //
 //        {
@@ -1215,7 +1215,7 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
 //
 //            ec.result(pass);
 //        }
-
+//
 //        ec.DESC("3x3 grid, manual, 3 simple, 3 resources");
 //
 //        {
@@ -1234,7 +1234,7 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
 //
 //            ec.result(pass);
 //        }
-
+//
 //        ec.DESC("3x3 grid, manual, 1 default strategic, 1 simple, 3 resources");
 //
 //        {
@@ -1253,7 +1253,7 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
 //
 //            ec.result(pass);
 //        }
-
+//
 //        ec.DESC("3x3 grid, manual, 1 aggressive strategic, 3 resources");
 //
 //        {
@@ -1270,7 +1270,7 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
 //
 //            ec.result(pass);
 //        }
-
+//
 //        ec.DESC("3x3 grid, manual, 1 aggressive strategic, 1 far simple, 3 res");
 //
 //        {
@@ -1292,8 +1292,8 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
 //
 //            ec.result(pass);
 //        }
-
-
+//
+//
 //        ec.DESC("3x3 grid, manual, 1 aggressive strategic, 1 near simple, 3 res");
 //
 //        {
@@ -1315,7 +1315,7 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
 //
 //            ec.result(pass);
 //        }
-
+//
 //        ec.DESC("3x3 grid, manual, 1 def, 1 aggr, 1 simple, 2 resources");
 //
 //        {
@@ -1337,5 +1337,5 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
 //
 //            ec.result(pass);
 //        }
-//    }
-//}
+    }
+}

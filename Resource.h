@@ -22,7 +22,7 @@ namespace Gaming {
         ~Resource();
 
         virtual double getCapacity() const { return __capacity; }
-        virtual double consume();
+        virtual double consume() { finish(); return __capacity; }
 
         void age() override final { __capacity /= RESOURCE_SPOIL_FACTOR; if ( __capacity < 0.000001) __capacity = 0;};
 

@@ -23,11 +23,6 @@ namespace Gaming
         
     }
     
-    double Resource::consume()
-    {
-        
-        return 0;// fill in
-    }
     
     ActionType Resource::takeTurn(const Surroundings &s) const
     {

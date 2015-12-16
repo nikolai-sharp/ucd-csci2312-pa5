@@ -404,6 +404,7 @@ namespace Gaming
             case SW: s.x++; s.y--; break;
             case S: s.x++; break;
             case SE: s.x++; s.y++; break;
+            case STAY:break;
         }
         return s;
     }
