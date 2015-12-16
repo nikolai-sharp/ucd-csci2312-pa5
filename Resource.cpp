@@ -31,8 +31,7 @@ namespace Gaming
     
     ActionType Resource::takeTurn(const Surroundings &s) const
     {
-        ActionType action;
-        return action;
+        return STAY;
     }
     
     Piece &Resource::operator*(Piece &other)

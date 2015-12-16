@@ -14,6 +14,7 @@ namespace Gaming {
 
     protected:
         double __energy;
+        static const ActionType surroundingToAction[9];
 
     public:
         static const double AGENT_FATIGUE_RATE;

@@ -86,6 +86,18 @@ namespace Gaming
         return numAgents;
     }
     
+    unsigned int Game::getNumStrategic() const
+    {
+        unsigned int numAgents = 0;
+        
+        for (auto it = __grid.begin(); it != __grid.end(); ++it) {
+            Agent *agent = dynamic_cast<Strategic*>(*it);
+            if (agent) numAgents ++;
+        }
+        
+        return numAgents;
+    }
+    
     unsigned int Game::getNumAgents() const {
         unsigned int numAgents = 0;
         

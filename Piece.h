@@ -22,8 +22,10 @@ namespace Gaming {
         bool __turned;
 
         Position __position;
+        
 
     protected:
+        
         const Game &__game; // note: a reference to the Game object
         unsigned int __id;
 

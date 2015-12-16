@@ -10,6 +10,7 @@
 namespace Gaming {
 
     class DefaultAgentStrategy : public Strategy {
+        static const ActionType surroundingToAction[9];
     public:
 
         DefaultAgentStrategy();

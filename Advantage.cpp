@@ -16,7 +16,7 @@ namespace Gaming
     
     Advantage::Advantage(const Game &g, const Position &p, double capacity): Resource::Resource(g,p,capacity)
     {
-        
+        __capacity *= ADVANTAGE_MULT_FACTOR;
     }
     
     Advantage::~Advantage()

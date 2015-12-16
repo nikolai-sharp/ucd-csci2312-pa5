@@ -15,7 +15,7 @@ using namespace Testing;
 
 int main() {
 
-    const int NumIters = 1;
+    const int NumIters = 3;
 
     cout << endl << "Testing PA5!!" << endl << endl;
 
@@ -33,9 +33,9 @@ int main() {
     // piece tests
     test_piece_smoketest(ec);
     test_piece_print(ec, NumIters);
-//    test_piece_aging(ec, NumIters);
-//    test_piece_energy(ec, NumIters);
-//    test_piece_turntaking(ec, NumIters);
+    test_piece_aging(ec, NumIters);
+    test_piece_energy(ec, NumIters);
+    test_piece_turntaking(ec, NumIters);
 //    test_piece_interaction(ec, NumIters);
 //
 //    // surroundings tests

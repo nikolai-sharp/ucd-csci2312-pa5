@@ -11,6 +11,7 @@
 
 namespace Gaming
 {
+    const ActionType DefaultAgentStrategy::surroundingToAction[9] = {NW, N, NE, W, STAY, E, SW, S, SE};
     
     DefaultAgentStrategy::DefaultAgentStrategy()
     {
@@ -24,9 +25,31 @@ namespace Gaming
     
     ActionType DefaultAgentStrategy::operator()(const Surroundings &s) const
     {
-        ActionType action;
         
-        return action;
+        for (int i = 0; i < 9; i++)
+        {
+            if (s.array[i] == ADVANTAGE)
+                return surroundingToAction[i];
+        }
+        
+        for (int i = 0; i < 9; i++)
+        {
+            if (s.array[i] == FOOD)
+                return surroundingToAction[i];
+        }
+        
+        for (int i = 0; i < 9; i++)
+        {
+            if (s.array[i] == SIMPLE)
+                return surroundingToAction[i];
+        }
+        
+        for (int i = 0; i < 9; i++)
+        {
+            if (s.array[i] == EMPTY)
+                return surroundingToAction[i];
+        }
+        return STAY;
     }
     
     

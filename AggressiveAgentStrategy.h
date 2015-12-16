@@ -11,6 +11,7 @@ namespace Gaming {
 
     class AggressiveAgentStrategy : public Strategy {
         double __agentEnergy;
+        static const ActionType surroundingToAction[9];
 
     public:
         static const double DEFAULT_AGGRESSION_THRESHOLD;

@@ -11,6 +11,7 @@
 namespace Gaming
 {
     const double Agent::AGENT_FATIGUE_RATE = 0.3;
+    const ActionType Agent::surroundingToAction[9] = {NW, N, NE, W, STAY, E, SW, S, SE};
     
     Agent::Agent(const Game &g, const Position &p, double energy): Piece::Piece(g,p), __energy(energy)
     {

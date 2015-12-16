@@ -30,9 +30,26 @@ namespace Gaming
     
     ActionType Simple::takeTurn(const Surroundings &s) const
     {
-        ActionType action;
+//        ActionType action;
         
-        return action;
+        for (int i = 0; i < 9; i++)
+        {
+            if (s.array[i] == ADVANTAGE)
+                return surroundingToAction[i];
+            else if (s.array[i] == FOOD)
+                return surroundingToAction[i];
+        }
+        
+        for (int i = 0; i < 9; i++)//movement to empty
+        {
+            if (s.array[i] == EMPTY)
+                return surroundingToAction[i];
+        }
+        
+        return STAY;
+        
+        
+//        return action;
     }
     
     
