@@ -831,57 +831,58 @@ void test_action_smoketest(ErrorContext &ec) {
     }
     ec.result(pass);
 
-//    ec.DESC("7x6, movement from position to position");
-//
-//    pass = true;
-//    for (int i = 0; i < 10; i ++) {
-//        Game g(13, 9); // width - y, height - x
-//
-//        g.addSimple(0, 12); Position ne(0, 12);
-//
-//        Position p0 = (g.isLegal(ActionType::NE, ne)) ?
-//                      g.move(ne, ActionType::NE) : ne;
-//
-//        pass = (p0.x == ne.x) && (p0.y == ne.y);
-//
-//        p0 = (g.isLegal(ActionType::S, ne)) ?
-//             g.move(ne, ActionType::S) : ne;
-//
-//        pass = pass && (p0.x == ne.x+1) && (p0.y == ne.y);
-//
-//        p0 = (g.isLegal(ActionType::W, ne)) ?
-//             g.move(ne, ActionType::W) : ne;
-//
-//        pass = pass && (p0.x == ne.x) && (p0.y == ne.y-1);
-//
-//        p0 = (g.isLegal(ActionType::SE, ne)) ?
-//             g.move(ne, ActionType::SE) : ne;
-//
-//        pass = pass && (p0.x == ne.x) && (p0.y == ne.y);
-//    }
-//    ec.result(pass);
+    ec.DESC("7x6, movement from position to position");
 
-//    ec.DESC("7x6, action needed to reach one position from another");
-//
-//    pass = true;
-//    for (int i = 0; i < 10; i ++) {
-//
-//        Game g(5, 5);
-//
-//        g.addSimple(1, 1); Position simpos(1, 1);
-//        g.addFood(1, 2); Position foodpos(1, 2);
-//
-//        pass = (Game::reachSurroundings(simpos, foodpos) == ActionType::E);
-//
-//        g.addAdvantage(0, 1); Position adpos(0, 1);
-//
-//        pass = pass && (Game::reachSurroundings(simpos, adpos) == ActionType::N);
-//
-//        Position newpos(2, 0);
-//
-//        pass = pass && (Game::reachSurroundings(simpos, newpos) == ActionType::SW);
-//    }
-//    ec.result(pass);
+    pass = true;
+    for (int i = 0; i < 1; i ++) {
+        Game g(13, 9); // width - y, height - x
+
+        g.addSimple(0, 12); Position ne(0, 12);
+
+        Position p0 = (g.isLegal(ActionType::NE, ne)) ?
+                      g.move(ne, ActionType::NE) : ne;
+
+        pass = (p0.x == ne.x) && (p0.y == ne.y);
+
+        p0 = (g.isLegal(ActionType::S, ne)) ?
+             g.move(ne, ActionType::S) : ne;
+
+        pass = pass && (p0.x == ne.x+1) && (p0.y == ne.y);
+
+        p0 = (g.isLegal(ActionType::W, ne)) ?
+             g.move(ne, ActionType::W) : ne;
+
+        pass = pass && (p0.x == ne.x) && (p0.y == ne.y-1);
+
+        p0 = (g.isLegal(ActionType::SE, ne)) ?
+             g.move(ne, ActionType::SE) : ne;
+
+
+        pass = pass && (p0.x == ne.x) && (p0.y == ne.y);
+    }
+    ec.result(pass);
+
+    ec.DESC("7x6, action needed to reach one position from another");
+
+    pass = true;
+    for (int i = 0; i < 10; i ++) {
+
+        Game g(5, 5);
+
+        g.addSimple(1, 1); Position simpos(1, 1);
+        g.addFood(1, 2); Position foodpos(1, 2);
+
+        pass = (Game::reachSurroundings(simpos, foodpos) == ActionType::E);
+
+        g.addAdvantage(0, 1); Position adpos(0, 1);
+
+        pass = pass && (Game::reachSurroundings(simpos, adpos) == ActionType::N);
+
+        Position newpos(2, 0);
+
+        pass = pass && (Game::reachSurroundings(simpos, newpos) == ActionType::SW);
+    }
+    ec.result(pass);
 }
 //
 //
@@ -1041,7 +1042,7 @@ void test_game_populate(ErrorContext &ec, unsigned int numRuns) {
             Game g(9, 9, false);
 
             pass = (g.getNumAgents() == 20) &&
-                   (g.getNumResources() == 39); // TODO sometimes this is 39
+                   (g.getNumResources() == 40); // TODO sometimes this is 39
 
             if (! pass) std::cout << g.getNumAgents() << ' '
                 << g.getNumResources() << ' ';
@@ -1093,35 +1094,35 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
             ec.result(pass);
         }
 
-//        ec.DESC("7x6 grid, automatic population");
-//
-//        {
-//            Game g(7, 6, false);
-//
-//            std::stringstream ss;
-//            ss << g;
-//            std::string line;
-//            getline(ss, line);
-//            std::regex re("Round [[:d:]]{1,3}");
-//            std::smatch m;
-//            std::regex_search(line, m, re);
-//            pass = (m.size() == 1);
-////            if (! pass) std::cout << m[0] << ' ' << m[1] << ' ' << m.size() << std::endl;
-//            for (int i = 0; i < 6; i++) {
-//                getline(ss, line);
-//                std::regex re1("(\\[([[:alpha:]]{1}[[:d:]]{1,4}[ ]?|[ ]{5})\\]){7}");
-//                std::regex_search(line, m, re1);
-//                pass = pass && (m.size() == 3);
-////                if (! pass) {
-////                    std::cout << m[0] << ' ' << m[1] << ' ' << m.size() << std::endl;
-////                }
-//            }
-//            getline(ss, line);
-//            std::regex re2("Status:");
-//            std::regex_search(line, m, re2);
-//            pass = pass && (m.size() == 1);
-//
-//            ec.result(pass);
+        ec.DESC("7x6 grid, automatic population");
+
+        {
+            Game g(7, 6, false);
+
+            std::stringstream ss;
+            ss << g;
+            std::string line;
+            getline(ss, line);
+            std::regex re("Round [[:d:]]{1,3}");
+            std::smatch m;
+            std::regex_search(line, m, re);
+            pass = (m.size() == 1);
+//            if (! pass) std::cout << m[0] << ' ' << m[1] << ' ' << m.size() << std::endl;
+            for (int i = 0; i < 6; i++) {
+                getline(ss, line);
+                std::regex re1("(\\[([[:alpha:]]{1}[[:d:]]{1,4}[ ]?|[ ]{5})\\]){7}");
+                std::regex_search(line, m, re1);
+                pass = pass && (m.size() == 3);
+//                if (! pass) {
+//                    std::cout << m[0] << ' ' << m[1] << ' ' << m.size() << std::endl;
+//                }
+            }
+            getline(ss, line);
+            std::regex re2("Status:");
+            std::regex_search(line, m, re2);
+            pass = pass && (m.size() == 1);
+
+            ec.result(pass);
         }
     }
 //}
@@ -1337,4 +1338,4 @@ void test_game_print(ErrorContext &ec, unsigned int numRuns) {
 //            ec.result(pass);
 //        }
 //    }
-//}
+}

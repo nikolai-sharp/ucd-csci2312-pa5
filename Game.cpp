@@ -21,12 +21,7 @@ namespace Gaming
     const unsigned Game::MIN_HEIGHT = 3;
     const double Game::STARTING_AGENT_ENERGY = 20;
     const double Game::STARTING_RESOURCE_CAPACITY = 10;
-    const unsigned int Game::actionToPosition[9] = {1, 2, 0, 5, 3, 8, 6, 7, 4};
-//        { N=0, NE, NW, E, W, SE, SW, S, STAY };
-//           1    2   0  5  3   8   6  7   4
-    //NW0 N1  NE2  0 1 2
-    //W3  ST4 E5   3 4 5
-    //SW6 S7  SE8  6 7 8
+    const unsigned int Game::actionToSurrounding[9] = {1, 2, 0, 5, 3, 8, 6, 7, 4};
     
     Game::Game(): __width(MIN_WIDTH), __height(MIN_HEIGHT), __grid(__width*__height, nullptr)
     {
@@ -39,7 +34,7 @@ namespace Gaming
         if (width < MIN_WIDTH || height < MIN_HEIGHT)
             throw InsufficientDimensionsEx(MIN_WIDTH, MIN_HEIGHT, width, height);
         __round = 0;
-        
+//        std::cout << "\nw:" << __width << "h:" << __height << *this;
         if (!manual)
         {
             populate();
@@ -54,11 +49,13 @@ namespace Gaming
     
     Game::~Game()
     {
-//        for (auto it = __grid.begin(); it != __grid.end(); it++)
-//        {
-//            if (*it != nullptr)
-//                
-//        }
+        for (int i = 0; i < __grid.size(); i++)
+        {
+            if (__grid[i] != nullptr)
+            {
+                delete __grid[i];
+            }
+        }
     }
     
     unsigned int Game::getNumPieces() const
@@ -125,11 +122,14 @@ namespace Gaming
                 if (*it == nullptr)
                     os << "[     ]";
                 else
+                {
                     os << "[" << (*it)->getTypeId() << (*it)->getId() << "]";
+                }
                 it++;
             }
         }
         os << std::endl << "Status:";
+//        os << std::endl << "w:" << game.__width << "h:" << game.__height;
         
         return os;
     }
@@ -356,7 +356,7 @@ namespace Gaming
     bool Game::isLegal(const ActionType &ac, const Position &pos) const
     {
         Surroundings s = getSurroundings(pos);
-        int i = actionToPosition[ac];
+        int i = actionToSurrounding[ac];
         
         if (s.array[i] == PieceType::INACCESSIBLE)
             return false;
@@ -381,15 +381,80 @@ namespace Gaming
         return s;
     }
     
-//    const Position Game::move(const Position &pos, const ActionType &ac) const
-//    {
-////        Surroundings s = getSurroundings(pos);
-//        if (isLegal(ac, pos))
-//        {
-//            int from = positionToGrid(pos), to = positionToGrid(pos, <#const unsigned int y#>);
-//        }
-//        else
-//            return pos;
-//    }
+    const Position Game::actionToPosition(ActionType ac, Position s) const
+    {//{ N=0, NE, NW, E, W, SE, SW, S, STAY };
+        switch (ac) {
+            case NW: s.x--; s.y--; break;
+            case N: s.x--; break;
+            case NE: s.x--; s.y++; break;
+            case W: s.y--; break;
+            case E: s.y++; break;
+            case SW: s.x++; s.y--; break;
+            case S: s.x++; break;
+            case SE: s.x++; s.y++; break;
+        }
+        return s;
+    }
+    
+    const Position Game::move(const Position &pos, const ActionType &ac) const
+    {
+//        Surroundings s = getSurroundings(pos);
+        Position pos1 = actionToPosition(ac,pos);
+        int from = positionToGrid(pos); int to = positionToGrid(pos1);
+        auto itf = __grid[from]; auto itt = __grid[to];
+        if (isLegal(ac, pos))
+        {
+            __grid[from]->setPosition(pos1);
+            if (__grid[to] == nullptr)
+                itt = itf;
+            itf = nullptr;
+            
+            return pos1;
+        }
+        else
+            return pos;
+    }
+    
+    const ActionType Game::reachSurroundings(const Position &from, const Position &to)
+    {
+        ActionType ac;
+        int xdiff = from.x - to.x, ydiff = from.y - to.y;
+        if (abs(xdiff) > 1 || abs(ydiff) > 1)
+        {
+            ac = STAY; //throw exception??
+        }
+        else
+        {
+            if (xdiff == 1 && ydiff == 1)
+                ac = NW;
+            else if (xdiff == 1 && ydiff == 0)
+                ac = N;
+            else if (xdiff == 1 && ydiff == -1)
+                ac = NE;
+            else if (xdiff == 0 && ydiff == 1)
+                ac = W;
+            else if (xdiff == 0 && ydiff == 0)
+                ac = STAY;
+            else if (xdiff == 0 && ydiff == -1)
+                ac = E;
+            else if (xdiff == -1 && ydiff == 1)
+                ac = SW;
+            else if (xdiff == -1 && ydiff == 0)
+                ac = S;
+            else if (xdiff == -1 && ydiff == -1)
+                ac = SE;
+            else //should never get here...
+                ac = STAY;
+        }
+        
+        
+        return ac;
+    }
     
 }
+
+
+
+
+
+
