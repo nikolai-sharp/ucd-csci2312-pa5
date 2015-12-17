@@ -482,7 +482,7 @@ namespace Gaming
             round();
             __round++;
             
-            if (!verbose)
+            if (verbose)
             {
                 std::cout << std::endl << *this;
                 std::cout << "Playing...";
