@@ -13,7 +13,7 @@ namespace Gaming
 {
     const char Simple::SIMPLE_ID = 'S';
     
-    Simple::Simple(const Game &g, const Position &p, double energy): Agent::Agent(g,p,energy), __bias(false)
+    Simple::Simple(const Game &g, const Position &p, double energy): Agent::Agent(g,p,energy), __bias(false) ////
     {
         
     }

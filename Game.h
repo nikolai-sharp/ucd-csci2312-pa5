@@ -8,7 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <array>
-#include <set>
+#include <forward_list>
 
 #include "Gaming.h"
 #include "DefaultAgentStrategy.h"
@@ -38,7 +38,7 @@ namespace Gaming {
 
         unsigned __width, __height;
         std::vector<Piece *> __grid; // if a position is empty, nullptr
-        std::set<Piece *> __pieces;
+        std::forward_list<Piece *> __pieces;
 
         unsigned int __round;
 

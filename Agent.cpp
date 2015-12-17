@@ -60,7 +60,7 @@ namespace Gaming
                 finish();
                 return *other;
             }
-            else //if (other->__energy < __energy)
+            else if (other->__energy < __energy)
             {
                 __energy -= other->__energy;
                 other->finish();
@@ -77,13 +77,14 @@ namespace Gaming
         {
             return *this;
         }
-        
+        return *this;
 
     }
     
     Piece &Agent::interact(Resource *other)
     {
-        __energy += other->consume();
+        __energy += other->getCapacity();
+        other->consume();
         return *this;
     }
 }

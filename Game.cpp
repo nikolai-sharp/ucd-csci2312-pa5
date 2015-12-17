@@ -467,29 +467,30 @@ namespace Gaming
     void Game::play(bool verbose)
     {
         //first, add pieces to set
-        for (auto it = __grid.begin(); it != __grid.end(); it++)
+        for (int i = 8; i >= 0; i--)
         {
-            if (*it != nullptr)
+            if (__grid[i] != nullptr)
             {
-                __pieces.insert(*it);
+                __pieces.push_front(__grid[i]);
             }
         }
         
-        
+        int i = 10;
         while (getNumResources() > 0)
+//        while (i >= 0)
         {
             round();
             __round++;
             
-            if (verbose)
+            if (!verbose)
             {
                 std::cout << std::endl << *this;
-                std::cout << "\nStatus: Playing...";
+                std::cout << "Playing...";
             }
+            i--;
         }
         std::cout << std::endl << *this;
-        std::cout << "Status: Over!\n";
-        
+        std::cout << "Over!\n";
     }
     
     void Game::round()
@@ -497,6 +498,7 @@ namespace Gaming
 //        std::cout << *this;
         for (auto it = __pieces.begin(); it != __pieces.end(); it++)
         {
+//            std::cout << *this;
 //            std::cout << "\nviable:" << (*it)->isViable();
             if (!(*it)->getTurned() && (*it)->isViable())
             {
@@ -528,7 +530,7 @@ namespace Gaming
                 }
             }
             (*it)->age();
-//            (*it)->setTurned(true);
+            (*it)->setTurned(true);
             
         }
         
@@ -539,19 +541,27 @@ namespace Gaming
             {
                 __grid[i] = nullptr;
             }
+            else if (__grid[i] != nullptr && (__grid[i]->isViable()))
+            {
+                (__grid[i])->setTurned(false);
+            }
         }
         
+        auto it1 = __pieces.before_begin();
         auto it2 = __pieces.begin();
         while (it2 != __pieces.end())
         {
             if (!(*it2)->isViable())
             {
-                it2 = __pieces.erase(it2);
+                it2 = __pieces.erase_after(it1);
             }
             else
+            {
                 it2++;
+                it1++;
+            }
         }
-        
+//        std::cout << "\t\tvecSize:" << __pieces.size();
         
 //        std::cout << *this;
         

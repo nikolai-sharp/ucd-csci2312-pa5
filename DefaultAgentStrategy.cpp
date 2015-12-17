@@ -71,21 +71,6 @@ namespace Gaming
             int k = rand() % (numFood);
             return (surroundingToAction[vec[k]]);
         }
-        else if (numSim > 0)
-        {
-            std::vector<int> vec(numSim);
-            int j = 0;
-            for (int i = 0; i < 9; i++)
-            {
-                if (s.array[i] == SIMPLE)
-                {
-                    vec[j] = i;
-                    j++;
-                }
-            }
-            int k = rand() % (numSim);
-            return (surroundingToAction[vec[k]]);
-        }
         else if (numEm > 0)
         {
             std::vector<int> vec(numEm);
@@ -99,6 +84,21 @@ namespace Gaming
                 }
             }
             int k = rand() % (numEm);
+            return (surroundingToAction[vec[k]]);
+        }
+        else if (numSim > 0)
+        {
+            std::vector<int> vec(numSim);
+            int j = 0;
+            for (int i = 0; i < 9; i++)
+            {
+                if (s.array[i] == SIMPLE)
+                {
+                    vec[j] = i;
+                    j++;
+                }
+            }
+            int k = rand() % (numSim);
             return (surroundingToAction[vec[k]]);
         }
         else
