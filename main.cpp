@@ -35,23 +35,25 @@ int main() {
 //    test_piece_print(ec, NumIters);
 //    test_piece_aging(ec, NumIters);
 //    test_piece_energy(ec, NumIters);
-    test_piece_turntaking(ec, NumIters);
+//    test_piece_turntaking(ec, NumIters);
 //    test_piece_interaction(ec, NumIters);
-//
-//    // surroundings tests
+////
+////    // surroundings tests
 //    test_surroundings_smoketest(ec);
-//
-//    // action tests
+////
+////    // action tests
 //    test_action_smoketest(ec);
-//
-//    // game tests
+////
+////    // game tests
 //    test_game_smoketest(ec);
 //    test_game_populate(ec, NumIters);
 //    test_game_print(ec, NumIters);
-//    test_game_play(ec, NumIters);
+    test_game_play(ec, NumIters);
     
 //    Gaming::Game g;
 //    std::cout << g;
+//    for (int i = 0; i < 100; i++)
+//        std::cout << rand() % 3;
 
     return 0;
 }

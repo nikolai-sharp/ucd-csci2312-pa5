@@ -46,12 +46,12 @@ namespace Gaming
                 numEm++;
         }
         
-        if (numFood + numAdv > 0)
+        if ((numFood + numAdv) > 0)
         {
             std::vector<int> vec(numFood + numAdv);
+            int j = 0;
             for (int i = 0; i < 9; i++)
             {
-                int j = 0;
                 if (s.array[i] == FOOD || s.array[i] == ADVANTAGE)
                 {
                     vec[j] = i;
@@ -64,15 +64,16 @@ namespace Gaming
         else if (numEm > 0)
         {
             std::vector<int> vec(numEm);
+            int j = 0;
             for (int i = 0; i < 9; i++)
             {
-                int j = 0;
                 if (s.array[i] == EMPTY)
                 {
                     vec[j] = i;
                     j++;
                 }
             }
+//            rand(); rand(); rand(); rand();
             int k = rand() % numEm;
             
             return (surroundingToAction[vec[k]]);
@@ -81,17 +82,6 @@ namespace Gaming
             return STAY;
         
         
-        
-//        else
-//        {
-//            for (int i = 8; i >=0; i--)//movement to empty
-//            {
-//                if (s.array[i] == EMPTY)
-//                    return surroundingToAction[i];
-//            }
-//        }
-        
-        return STAY;
         
         
 //        return action;

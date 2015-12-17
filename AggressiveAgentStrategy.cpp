@@ -41,13 +41,13 @@ namespace Gaming
             else if (s.array[i] == EMPTY)
                 numEm++;
         }
-        
+//        std::cout << "\nfood:" << numFood << "adv:" << numAdv << "strat:" << numStr << "sim:" << numSim << "empty:" << numEm << std::endl;
         if (__agentEnergy >= DEFAULT_AGGRESSION_THRESHOLD && ((numSim + numStr) > 0))
         {
             std::vector<int> vec(numSim + numStr);
+            int j = 0;
             for (int i = 0; i < 9; i++)
             {
-                int j = 0;
                 if (s.array[i] == SIMPLE || s.array[i] == STRATEGIC)
                 {
                     vec[j] = i;
@@ -60,9 +60,9 @@ namespace Gaming
         else if (numAdv > 0)
         {
             std::vector<int> vec(numAdv);
+            int j = 0;
             for (int i = 0; i < 9; i++)
             {
-                int j = 0;
                 if (s.array[i] == ADVANTAGE)
                 {
                     vec[j] = i;
@@ -75,9 +75,9 @@ namespace Gaming
         else if (numFood > 0)
         {
             std::vector<int> vec(numFood);
+            int j = 0;
             for (int i = 0; i < 9; i++)
             {
-                int j = 0;
                 if (s.array[i] == FOOD)
                 {
                     vec[j] = i;
@@ -90,9 +90,9 @@ namespace Gaming
         else if (numEm > 0)
         {
             std::vector<int> vec(numEm);
+            int j = 0;
             for (int i = 0; i < 9; i++)
             {
-                int j = 0;
                 if (s.array[i] == EMPTY)
                 {
                     vec[j] = i;

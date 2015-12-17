@@ -44,9 +44,9 @@ namespace Gaming
         if (numAdv > 0)
         {
             std::vector<int> vec(numAdv);
+            int j = 0;
             for (int i = 0; i < 9; i++)
             {
-                int j = 0;
                 if (s.array[i] == ADVANTAGE)
                 {
                     vec[j] = i;
@@ -59,9 +59,9 @@ namespace Gaming
         else if (numFood > 0)
         {
             std::vector<int> vec(numFood);
+            int j = 0;
             for (int i = 0; i < 9; i++)
             {
-                int j = 0;
                 if (s.array[i] == FOOD)
                 {
                     vec[j] = i;
@@ -74,9 +74,9 @@ namespace Gaming
         else if (numSim > 0)
         {
             std::vector<int> vec(numSim);
+            int j = 0;
             for (int i = 0; i < 9; i++)
             {
-                int j = 0;
                 if (s.array[i] == SIMPLE)
                 {
                     vec[j] = i;
@@ -89,9 +89,9 @@ namespace Gaming
         else if (numEm > 0)
         {
             std::vector<int> vec(numEm);
+            int j = 0;
             for (int i = 0; i < 9; i++)
             {
-                int j = 0;
                 if (s.array[i] == EMPTY)
                 {
                     vec[j] = i;

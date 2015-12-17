@@ -43,6 +43,7 @@ namespace Gaming {
 
         bool getTurned() const { return __turned; }
         void setTurned(bool turned) { __turned = turned; }
+        void finnish() { finish();}
 
         virtual void age() = 0;
         virtual bool isViable() const = 0;

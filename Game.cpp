@@ -481,7 +481,7 @@ namespace Gaming
             round();
             __round++;
             
-            if (!verbose)
+            if (verbose)
             {
                 std::cout << std::endl << *this;
                 std::cout << "\nStatus: Playing...";
@@ -500,6 +500,7 @@ namespace Gaming
 //            std::cout << "\nviable:" << (*it)->isViable();
             if (!(*it)->getTurned() && (*it)->isViable())
             {
+//                std::cout << *(*it);
                 Position p = (*it)->getPosition();
                 int oldG = positionToGrid(p);
                 Surroundings s = getSurroundings((*it)->getPosition());
@@ -513,7 +514,9 @@ namespace Gaming
                     if ( __grid[newG] != nullptr)
                     {
                         Piece *pi = &((*(*it)) * (*(__grid[newG])));//this is the strangest thing I've ever created.
-                        
+                        char id = (__grid[newG])->getTypeId();
+                        if (id == 'F' || id == 'D')
+                            (__grid[newG])->finnish();
                         __grid[newG] = pi;
                     }
                     else
@@ -527,27 +530,26 @@ namespace Gaming
             (*it)->age();
 //            (*it)->setTurned(true);
             
-            for (int i = 0; i < __grid.size(); i++)
-            {
-                
-                if (__grid[i] != nullptr && !(__grid[i])->isViable())
-                {
-                    __grid[i] = nullptr;
-                }
-            }
-            if (__pieces.size() > 0)
-            {
-//                for (auto it = __pieces.begin(); it != __pieces.end(); it++)
-//                {
-//                    if (!(*it)->isViable())
-//                    {
-//                        it = __pieces.erase(it);
-//                    }
-//                    else
-//                        it++;
-//                }
+        }
+        
+        for (int i = 0; i < __grid.size(); i++)
+        {
             
+            if (__grid[i] != nullptr && !(__grid[i])->isViable())
+            {
+                __grid[i] = nullptr;
             }
+        }
+        
+        auto it2 = __pieces.begin();
+        while (it2 != __pieces.end())
+        {
+            if (!(*it2)->isViable())
+            {
+                it2 = __pieces.erase(it2);
+            }
+            else
+                it2++;
         }
         
         

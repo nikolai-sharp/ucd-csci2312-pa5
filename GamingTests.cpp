@@ -511,7 +511,6 @@ void test_piece_turntaking(ErrorContext &ec, unsigned int numRuns) {
                         Game::STARTING_AGENT_ENERGY,
                         new AggressiveAgentStrategy(Game::STARTING_AGENT_ENERGY));
 
-            std::cout << g;
             // create an upcast pointer to the agent for polymorphic turn taking
             Piece *piece = &s;
 
@@ -1152,192 +1151,192 @@ void test_game_play(ErrorContext &ec, unsigned int numRuns) {
             ec.result(pass);
         }
 
-//        ec.DESC("3x3 grid, manual, 1 simple, 1 resource");
-//
-//        {
-//            Game g; // manual = true, by default
-//            g.addSimple(1, 1);
-//            g.addFood(2, 2);
-//
-//            g.play(false); // verbose = false, by default
-//
-//            pass = (g.getNumResources() == 0) &&
-//                   (g.getNumAgents() == 1);
-//
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("3x3 grid, manual, 1 simple, 2 resources");
-//
-//        {
-//            Game g; // manual = true, by default
-//            g.addSimple(1, 1);
-//            g.addFood(2, 2);
-//            g.addAdvantage(1, 0);
-//
-//            g.play(false); // verbose = false, by default
-//
-//            pass = (g.getNumResources() == 0) &&
-//                   (g.getNumAgents() == 1);
-//
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("3x3 grid, manual, 1 simple, 3 resources");
-//
-//        {
-//            Game g; // manual = true, by default
-//            g.addSimple(0, 0);
-//            g.addFood(0, 2);
-//            g.addFood(2, 2);
-//            g.addAdvantage(1, 0);
-//
-//            g.play(false); // verbose = false, by default
-//
-//            pass = (g.getNumResources() == 0) &&
-//                   (g.getNumAgents() == 1);
-//
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("3x3 grid, manual, 2 simple, 3 resources");
-//
-//        {
-//            Game g; // manual = true, by default
-//            g.addSimple(0, 0);
-//            g.addSimple(0, 1);
-//            g.addFood(0, 2);
-//            g.addFood(2, 2);
-//            g.addAdvantage(1, 0);
-//
-//            g.play(false); // verbose = false, by default
-//
-//            pass = (g.getNumResources() == 0) &&
-//                   (g.getNumAgents() == 2);
-//
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("3x3 grid, manual, 3 simple, 3 resources");
-//
-//        {
-//            Game g; // manual = true, by default
-//            g.addSimple(0, 0);
-//            g.addSimple(0, 1);
-//            g.addSimple(1, 1);
-//            g.addFood(0, 2);
-//            g.addFood(2, 2);
-//            g.addAdvantage(1, 0);
-//
-//            g.play(false); // verbose = false, by default
-//
-//            pass = (g.getNumResources() == 0) &&
-//                   (g.getNumAgents() == 3);
-//
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("3x3 grid, manual, 1 default strategic, 1 simple, 3 resources");
-//
-//        {
-//            Game g; // manual = true, by default
-//            g.addSimple(0, 0);
-//            g.addStrategic(0, 1);
-//            g.addFood(0, 2);
-//            g.addFood(2, 2);
-//            g.addAdvantage(1, 0);
-//
-//            g.play(false); // verbose = false, by default
-//
-//            pass = (g.getNumResources() == 0) &&
-//                   (g.getNumStrategic() == 1) &&
-//                   (g.getNumSimple() == 1);
-//
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("3x3 grid, manual, 1 aggressive strategic, 3 resources");
-//
-//        {
-//            Game g; // manual = true, by default
-//            g.addStrategic(0, 1, new AggressiveAgentStrategy(Game::STARTING_AGENT_ENERGY));
-//            g.addFood(0, 2);
-//            g.addFood(2, 2);
-//            g.addAdvantage(1, 0);
-//
-//            g.play(false); // verbose = false, by default
-//
-//            pass = (g.getNumResources() == 0) &&
-//                   (g.getNumStrategic() == 1);
-//
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("3x3 grid, manual, 1 aggressive strategic, 1 far simple, 3 res");
-//
-//        {
-//            Game g; // manual = true, by default
-//            // In this configuration, the Simple and Strategic are far from each other
-//            // and they might or might not get close to each other before the
-//            // Resources run out
-//            g.addStrategic(0, 1, new AggressiveAgentStrategy(Game::STARTING_AGENT_ENERGY));
-//            g.addSimple(2, 1);
-//            g.addFood(0, 2);
-//            g.addFood(2, 2);
-//            g.addAdvantage(1, 0);
-//
-//            g.play(false); // verbose = false, by default
-//
-//            pass = (g.getNumResources() == 0) &&
-//                   (g.getNumStrategic() == 1 ) &&
-//                   (g.getNumSimple() <= 1); // randomized game play
-//
-//            ec.result(pass);
-//        }
-//
-//
-//        ec.DESC("3x3 grid, manual, 1 aggressive strategic, 1 near simple, 3 res");
-//
-//        {
-//            Game g; // manual = true, by default
-//
-//            // In this configuration, the Simple gets an Advantage and when the
-//            // aggressive Strategic challenges it, the Strategic loses and disappears
-//            g.addSimple(0, 0);
-//            g.addStrategic(0, 1, new AggressiveAgentStrategy(Game::STARTING_AGENT_ENERGY));
-//            g.addFood(0, 2);
-//            g.addFood(2, 2);
-//            g.addAdvantage(1, 0);
-//
-//            g.play(false); // verbose = false, by default
-//
-//            pass = (g.getNumResources() == 0) &&
-//                   (g.getNumSimple() == 1) &&
-//                   (g.getNumStrategic() == 0);
-//
-//            ec.result(pass);
-//        }
-//
-//        ec.DESC("3x3 grid, manual, 1 def, 1 aggr, 1 simple, 2 resources");
-//
-//        {
-//            Game g; // manual = true, by default
-//            // In this situation, the default flees, the aggressive attacks either
-//            // the default or the Simple, and the dies with it, leaving the other
-//            // one to win
-//            g.addStrategic(0, 0);
-//            g.addSimple(1, 0);
-//            g.addStrategic(0, 1, new AggressiveAgentStrategy(Game::STARTING_AGENT_ENERGY));
-//            g.addFood(0, 2);
-//            g.addFood(2, 2);
-//
-//            g.play(false); // verbose = false, by default
-//
-//            pass = (g.getNumResources() == 0) &&
-//                   ((g.getNumStrategic() == 1 && g.getNumSimple() == 0) ||
-//                    (g.getNumStrategic() == 0 && g.getNumSimple() == 1));
-//
-//            ec.result(pass);
-//        }
+        ec.DESC("3x3 grid, manual, 1 simple, 1 resource");
+
+        {
+            Game g; // manual = true, by default
+            g.addSimple(1, 1);
+            g.addFood(2, 2);
+
+            g.play(false); // verbose = false, by default
+
+            pass = (g.getNumResources() == 0) &&
+                   (g.getNumAgents() == 1);
+
+            ec.result(pass);
+        }
+
+        ec.DESC("3x3 grid, manual, 1 simple, 2 resources");
+
+        {
+            Game g; // manual = true, by default
+            g.addSimple(1, 1);
+            g.addFood(2, 2);
+            g.addAdvantage(1, 0);
+
+            g.play(false); // verbose = false, by default
+
+            pass = (g.getNumResources() == 0) &&
+                   (g.getNumAgents() == 1);
+
+            ec.result(pass);
+        }
+
+        ec.DESC("3x3 grid, manual, 1 simple, 3 resources");
+
+        {
+            Game g; // manual = true, by default
+            g.addSimple(0, 0);
+            g.addFood(0, 2);
+            g.addFood(2, 2);
+            g.addAdvantage(1, 0);
+
+            g.play(false); // verbose = false, by default
+
+            pass = (g.getNumResources() == 0) &&
+                   (g.getNumAgents() == 1);
+
+            ec.result(pass);
+        }
+
+        ec.DESC("3x3 grid, manual, 2 simple, 3 resources");
+
+        {
+            Game g; // manual = true, by default
+            g.addSimple(0, 0);
+            g.addSimple(0, 1);
+            g.addFood(0, 2);
+            g.addFood(2, 2);
+            g.addAdvantage(1, 0);
+
+            g.play(false); // verbose = false, by default
+
+            pass = (g.getNumResources() == 0) &&
+                   (g.getNumAgents() == 2);
+
+            ec.result(pass);
+        }
+
+        ec.DESC("3x3 grid, manual, 3 simple, 3 resources");
+
+        {
+            Game g; // manual = true, by default
+            g.addSimple(0, 0);
+            g.addSimple(0, 1);
+            g.addSimple(1, 1);
+            g.addFood(0, 2);
+            g.addFood(2, 2);
+            g.addAdvantage(1, 0);
+
+            g.play(false); // verbose = false, by default
+
+            pass = (g.getNumResources() == 0) &&
+                   (g.getNumAgents() == 3);
+
+            ec.result(pass);
+        }
+
+        ec.DESC("3x3 grid, manual, 1 default strategic, 1 simple, 3 resources");
+
+        {
+            Game g; // manual = true, by default
+            g.addSimple(0, 0);
+            g.addStrategic(0, 1);
+            g.addFood(0, 2);
+            g.addFood(2, 2);
+            g.addAdvantage(1, 0);
+
+            g.play(false); // verbose = false, by default
+
+            pass = (g.getNumResources() == 0) &&
+                   (g.getNumStrategic() == 1) &&
+                   (g.getNumSimple() == 1);
+
+            ec.result(pass);
+        }
+
+        ec.DESC("3x3 grid, manual, 1 aggressive strategic, 3 resources");
+
+        {
+            Game g; // manual = true, by default
+            g.addStrategic(0, 1, new AggressiveAgentStrategy(Game::STARTING_AGENT_ENERGY));
+            g.addFood(0, 2);
+            g.addFood(2, 2);
+            g.addAdvantage(1, 0);
+
+            g.play(false); // verbose = false, by default
+
+            pass = (g.getNumResources() == 0) &&
+                   (g.getNumStrategic() == 1);
+
+            ec.result(pass);
+        }
+
+        ec.DESC("3x3 grid, manual, 1 aggressive strategic, 1 far simple, 3 res");
+
+        {
+            Game g; // manual = true, by default
+            // In this configuration, the Simple and Strategic are far from each other
+            // and they might or might not get close to each other before the
+            // Resources run out
+            g.addStrategic(0, 1, new AggressiveAgentStrategy(Game::STARTING_AGENT_ENERGY));
+            g.addSimple(2, 1);
+            g.addFood(0, 2);
+            g.addFood(2, 2);
+            g.addAdvantage(1, 0);
+
+            g.play(false); // verbose = false, by default
+
+            pass = (g.getNumResources() == 0) &&
+                   (g.getNumStrategic() == 1 ) &&
+                   (g.getNumSimple() <= 1); // randomized game play
+
+            ec.result(pass);
+        }
+
+
+        ec.DESC("3x3 grid, manual, 1 aggressive strategic, 1 near simple, 3 res");
+
+        {
+            Game g; // manual = true, by default
+
+            // In this configuration, the Simple gets an Advantage and when the
+            // aggressive Strategic challenges it, the Strategic loses and disappears
+            g.addSimple(0, 0);
+            g.addStrategic(0, 1, new AggressiveAgentStrategy(Game::STARTING_AGENT_ENERGY));
+            g.addFood(0, 2);
+            g.addFood(2, 2);
+            g.addAdvantage(1, 0);
+
+            g.play(false); // verbose = false, by default
+
+            pass = (g.getNumResources() == 0) &&
+                   (g.getNumSimple() == 1) &&
+                   (g.getNumStrategic() == 0);
+
+            ec.result(pass);
+        }
+
+        ec.DESC("3x3 grid, manual, 1 def, 1 aggr, 1 simple, 2 resources");
+
+        {
+            Game g; // manual = true, by default
+            // In this situation, the default flees, the aggressive attacks either
+            // the default or the Simple, and the dies with it, leaving the other
+            // one to win
+            g.addStrategic(0, 0);
+            g.addSimple(1, 0);
+            g.addStrategic(0, 1, new AggressiveAgentStrategy(Game::STARTING_AGENT_ENERGY));
+            g.addFood(0, 2);
+            g.addFood(2, 2);
+
+            g.play(false); // verbose = false, by default
+
+            pass = (g.getNumResources() == 0) &&
+                   ((g.getNumStrategic() == 1 && g.getNumSimple() == 0) ||
+                    (g.getNumStrategic() == 0 && g.getNumSimple() == 1));
+
+            ec.result(pass);
+        }
     }
 }
