@@ -482,15 +482,18 @@ namespace Gaming
             round();
             __round++;
             
-            if (verbose)
+            if (getNumResources() == 0)
+            {
+                std::cout << std::endl << *this;
+                std::cout << "Over!\n";
+            }
+            else if (verbose)
             {
                 std::cout << std::endl << *this;
                 std::cout << "Playing...";
             }
             i--;
         }
-        std::cout << std::endl << *this;
-        std::cout << "Over!\n";
     }
     
     void Game::round()
