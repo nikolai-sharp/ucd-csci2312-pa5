@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <array>
+#include <set>
 
 #include "Gaming.h"
 #include "DefaultAgentStrategy.h"
@@ -27,7 +28,7 @@ namespace Gaming {
         static const unsigned int NUM_INIT_AGENT_FACTOR;
         static const unsigned int NUM_INIT_RESOURCE_FACTOR;
         static const unsigned int actionToSurrounding[9];
-//        static const std::vector<std::pair<int,int>> actionToGrid;
+        
 
         static PositionRandomizer __posRandomizer;
 
@@ -37,6 +38,7 @@ namespace Gaming {
 
         unsigned __width, __height;
         std::vector<Piece *> __grid; // if a position is empty, nullptr
+        std::set<Piece *> __pieces;
 
         unsigned int __round;
 

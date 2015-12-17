@@ -13,7 +13,7 @@ namespace Gaming
 {
     const char Simple::SIMPLE_ID = 'S';
     
-    Simple::Simple(const Game &g, const Position &p, double energy): Agent::Agent(g,p,energy)
+    Simple::Simple(const Game &g, const Position &p, double energy): Agent::Agent(g,p,energy), __bias(false)
     {
         
     }
@@ -31,20 +31,65 @@ namespace Gaming
     ActionType Simple::takeTurn(const Surroundings &s) const
     {
 //        ActionType action;
-        
+        int numFood = 0, numAdv = 0, numStr = 0, numSim = 0, numEm = 0;
         for (int i = 0; i < 9; i++)
         {
-            if (s.array[i] == ADVANTAGE)
-                return surroundingToAction[i];
-            else if (s.array[i] == FOOD)
-                return surroundingToAction[i];
+            if (s.array[i] == FOOD)
+                numFood++;
+            else if (s.array[i] == ADVANTAGE)
+                numAdv++;
+            else if (s.array[i] == STRATEGIC)
+                numStr++;
+            else if (s.array[i] == SIMPLE)
+                numSim++;
+            else if (s.array[i] == EMPTY)
+                numEm++;
         }
         
-        for (int i = 0; i < 9; i++)//movement to empty
+        if (numFood + numAdv > 0)
         {
-            if (s.array[i] == EMPTY)
-                return surroundingToAction[i];
+            std::vector<int> vec(numFood + numAdv);
+            for (int i = 0; i < 9; i++)
+            {
+                int j = 0;
+                if (s.array[i] == FOOD || s.array[i] == ADVANTAGE)
+                {
+                    vec[j] = i;
+                    j++;
+                }
+            }
+            int k = rand() % (numAdv + numFood);
+            return (surroundingToAction[vec[k]]);
         }
+        else if (numEm > 0)
+        {
+            std::vector<int> vec(numEm);
+            for (int i = 0; i < 9; i++)
+            {
+                int j = 0;
+                if (s.array[i] == EMPTY)
+                {
+                    vec[j] = i;
+                    j++;
+                }
+            }
+            int k = rand() % numEm;
+            
+            return (surroundingToAction[vec[k]]);
+        }
+        else
+            return STAY;
+        
+        
+        
+//        else
+//        {
+//            for (int i = 8; i >=0; i--)//movement to empty
+//            {
+//                if (s.array[i] == EMPTY)
+//                    return surroundingToAction[i];
+//            }
+//        }
         
         return STAY;
         

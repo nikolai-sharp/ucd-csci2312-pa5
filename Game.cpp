@@ -19,7 +19,7 @@ namespace Gaming
     const unsigned int Game::NUM_INIT_RESOURCE_FACTOR = 2;
     const unsigned Game::MIN_WIDTH = 3;
     const unsigned Game::MIN_HEIGHT = 3;
-    const double Game::STARTING_AGENT_ENERGY = 20;
+    const double Game::STARTING_AGENT_ENERGY = 20;//////
     const double Game::STARTING_RESOURCE_CAPACITY = 10;
     const unsigned int Game::actionToSurrounding[9] = {1, 2, 0, 5, 3, 8, 6, 7, 4};
     
@@ -463,6 +463,98 @@ namespace Gaming
         
         return ac;
     }
+    
+    void Game::play(bool verbose)
+    {
+        //first, add pieces to set
+        for (auto it = __grid.begin(); it != __grid.end(); it++)
+        {
+            if (*it != nullptr)
+            {
+                __pieces.insert(*it);
+            }
+        }
+        
+        
+        while (getNumResources() > 0)
+        {
+            round();
+            __round++;
+            
+            if (!verbose)
+            {
+                std::cout << std::endl << *this;
+                std::cout << "\nStatus: Playing...";
+            }
+        }
+        std::cout << std::endl << *this;
+        std::cout << "Status: Over!\n";
+        
+    }
+    
+    void Game::round()
+    {
+//        std::cout << *this;
+        for (auto it = __pieces.begin(); it != __pieces.end(); it++)
+        {
+//            std::cout << "\nviable:" << (*it)->isViable();
+            if (!(*it)->getTurned() && (*it)->isViable())
+            {
+                Position p = (*it)->getPosition();
+                int oldG = positionToGrid(p);
+                Surroundings s = getSurroundings((*it)->getPosition());
+                ActionType ac = (*it)->takeTurn(s);
+                if (isLegal(ac, p) && ac != STAY)
+                {
+                    Position np = actionToPosition(ac, p);
+                    int newG = positionToGrid(np);
+                    (*it)->setPosition(np);
+                    
+                    if ( __grid[newG] != nullptr)
+                    {
+                        Piece *pi = &((*(*it)) * (*(__grid[newG])));//this is the strangest thing I've ever created.
+                        
+                        __grid[newG] = pi;
+                    }
+                    else
+                    {
+                        __grid[newG] = __grid[oldG];
+                    }
+                    __grid[oldG] = nullptr;
+                    
+                }
+            }
+            (*it)->age();
+//            (*it)->setTurned(true);
+            
+            for (int i = 0; i < __grid.size(); i++)
+            {
+                
+                if (__grid[i] != nullptr && !(__grid[i])->isViable())
+                {
+                    __grid[i] = nullptr;
+                }
+            }
+            if (__pieces.size() > 0)
+            {
+//                for (auto it = __pieces.begin(); it != __pieces.end(); it++)
+//                {
+//                    if (!(*it)->isViable())
+//                    {
+//                        it = __pieces.erase(it);
+//                    }
+//                    else
+//                        it++;
+//                }
+            
+            }
+        }
+        
+        
+//        std::cout << *this;
+        
+    }
+    
     
 }
 

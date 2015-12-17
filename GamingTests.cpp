@@ -505,11 +505,13 @@ void test_piece_turntaking(ErrorContext &ec, unsigned int numRuns) {
             g.addStrategic(1, 0);
             g.addFood(2, 1); g.addSimple(2, 2);
 
+            
             // create an aggressive Strategic, passing it the game and a position
             Strategic s(g, Position(1, 1),
                         Game::STARTING_AGENT_ENERGY,
                         new AggressiveAgentStrategy(Game::STARTING_AGENT_ENERGY));
 
+            std::cout << g;
             // create an upcast pointer to the agent for polymorphic turn taking
             Piece *piece = &s;
 
@@ -1138,17 +1140,17 @@ void test_game_play(ErrorContext &ec, unsigned int numRuns) {
 
     for (int run = 0; run < numRuns; run++) {
 
-//        ec.DESC("3x3 grid, manual, game w/o resources terminates immediately");
-//
-//        {
-//            Game g; // manual = true, by default
-//
-//            g.play(); // verbose = false, by default
-//
-//            pass = (g.getNumResources() == 0);
-//
-//            ec.result(pass);
-//        }
+        ec.DESC("3x3 grid, manual, game w/o resources terminates immediately");
+
+        {
+            Game g; // manual = true, by default
+
+            g.play(); // verbose = false, by default
+
+            pass = (g.getNumResources() == 0);
+
+            ec.result(pass);
+        }
 
 //        ec.DESC("3x3 grid, manual, 1 simple, 1 resource");
 //

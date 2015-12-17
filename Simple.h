@@ -13,6 +13,8 @@ namespace Gaming {
     class Simple : public Agent {
     private:
         static const char SIMPLE_ID;
+        bool __bias;
+        void changeBias() { __bias = !__bias;}
 
     public:
         Simple(const Game &g, const Position &p, double energy);

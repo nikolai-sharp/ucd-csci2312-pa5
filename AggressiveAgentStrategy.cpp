@@ -27,32 +27,83 @@ namespace Gaming
     
     ActionType AggressiveAgentStrategy::operator()(const Surroundings &s) const
     {
-        if (__agentEnergy >= DEFAULT_AGGRESSION_THRESHOLD)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                if (s.array[i] == SIMPLE || s.array[i] == STRATEGIC)
-                    return surroundingToAction[i];
-            }
-        }
-        
-        for (int i = 0; i < 9; i++)
-        {
-            if (s.array[i] == ADVANTAGE)
-                return surroundingToAction[i];
-        }
-        
+        int numFood = 0, numAdv = 0, numStr = 0, numSim = 0, numEm = 0;
         for (int i = 0; i < 9; i++)
         {
             if (s.array[i] == FOOD)
-                return surroundingToAction[i];
+                numFood++;
+            else if (s.array[i] == ADVANTAGE)
+                numAdv++;
+            else if (s.array[i] == STRATEGIC)
+                numStr++;
+            else if (s.array[i] == SIMPLE)
+                numSim++;
+            else if (s.array[i] == EMPTY)
+                numEm++;
         }
-        for (int i = 0; i < 9; i++)
+        
+        if (__agentEnergy >= DEFAULT_AGGRESSION_THRESHOLD && ((numSim + numStr) > 0))
         {
-            if (s.array[i] == EMPTY)
-                return surroundingToAction[i];
+            std::vector<int> vec(numSim + numStr);
+            for (int i = 0; i < 9; i++)
+            {
+                int j = 0;
+                if (s.array[i] == SIMPLE || s.array[i] == STRATEGIC)
+                {
+                    vec[j] = i;
+                    j++;
+                }
+            }
+            int k = rand() % (numSim + numStr);
+            return (surroundingToAction[vec[k]]);
         }
-        return STAY;
+        else if (numAdv > 0)
+        {
+            std::vector<int> vec(numAdv);
+            for (int i = 0; i < 9; i++)
+            {
+                int j = 0;
+                if (s.array[i] == ADVANTAGE)
+                {
+                    vec[j] = i;
+                    j++;
+                }
+            }
+            int k = rand() % (numAdv);
+            return (surroundingToAction[vec[k]]);
+        }
+        else if (numFood > 0)
+        {
+            std::vector<int> vec(numFood);
+            for (int i = 0; i < 9; i++)
+            {
+                int j = 0;
+                if (s.array[i] == FOOD)
+                {
+                    vec[j] = i;
+                    j++;
+                }
+            }
+            int k = rand() % (numFood);
+            return (surroundingToAction[vec[k]]);
+        }
+        else if (numEm > 0)
+        {
+            std::vector<int> vec(numEm);
+            for (int i = 0; i < 9; i++)
+            {
+                int j = 0;
+                if (s.array[i] == EMPTY)
+                {
+                    vec[j] = i;
+                    j++;
+                }
+            }
+            int k = rand() % (numEm);
+            return (surroundingToAction[vec[k]]);
+        }
+        else
+            return STAY;
         
     }
     

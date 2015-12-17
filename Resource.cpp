@@ -7,6 +7,7 @@
 //
 
 #include "Resource.h"
+#include "Agent.h"
 
 
 namespace Gaming
@@ -32,7 +33,21 @@ namespace Gaming
     Piece &Resource::operator*(Piece &other)
     {
         
-        return other;
+//        Piece *ot = &other;
+//        PieceType p = other.getType();
+//        if (p == ADVANTAGE || p == FOOD)
+//        {
+//            Resource *res = dynamic_cast<Resource*>(ot);
+//            
+//            return interact(res);
+//        }
+//        else if (p == SIMPLE || p == STRATEGIC)
+//        {
+//            Agent *ag = dynamic_cast<Agent*>(ot);
+//            
+//            return interact(ag);
+//        }
+        return *this;//shouldn't get here..
     }
     
     Piece &Resource::interact(Agent *other)
