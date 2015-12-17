@@ -467,7 +467,7 @@ namespace Gaming
     void Game::play(bool verbose)
     {
         //first, add pieces to set
-        for (int i = __width * __height - 1; i >= 0; i--)
+        for (int i = __width * __height - 1; i >= 0; i--)//
         {
             if (__grid[i] != nullptr)
             {
